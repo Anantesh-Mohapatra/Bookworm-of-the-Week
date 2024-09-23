@@ -74,7 +74,7 @@ def scrape_bestseller_categories(url):
 
 ## Part 2 - Get New York Times bestsellers list using the category
 
-def get_nyt_book_data(category):
+def get_nyt_book_data(category, categories):
     # Before using the API, the category name must be formatted.
     formatted_category = category.replace(",", "").replace("&", "and").replace(" ", "-").lower()
     
@@ -223,7 +223,7 @@ def get_data_for_mult_categories(url):
     category_list = categories.keys()
     book_dataframe = pd.DataFrame()
     for category in category_list:
-        df_cat = get_nyt_book_data(category)
+        df_cat = get_nyt_book_data(category, categories)
         df_cat = get_add_details(df_cat)
         book_dataframe = pd.concat([book_dataframe, df_cat], ignore_index=True)
     
